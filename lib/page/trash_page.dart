@@ -11,32 +11,32 @@ class TrashPage extends StatelessWidget {
     final ProductState productState = ProductState();
     return Observer(
       builder: (_) => ListView.builder(
-                  itemCount: productState.listProductState.length,
-                    itemBuilder: (BuildContext inBuildContext, int inIndex) {
-                      Product product =  productState.listProductState[inIndex];
-                      return Column(
-                        children: [
-                          (product.basket == "true") ?
-                          ListTile(
-                            leading: CircleAvatar(
-                                backgroundImage: AssetImage(product.pathIcon!)
-                            ),
-                            title: Text("${product.name}"),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                productState.changeState(inIndex);
-                              },
-                            ),
-                          )
-                          : const SizedBox(),
-                          (product.basket == "false")
-                              ? const SizedBox()
-                              : const Divider()
-                        ],
-                      );
-                    }
-                ),
+          itemCount: productState.listProductState.length,
+          itemBuilder: (BuildContext inBuildContext, int inIndex) {
+            Product product = productState.listProductState[inIndex];
+            return Observer(
+              builder: (_) => Column(
+                children: [
+                  (product.basket == "true")
+                      ? ListTile(
+                          leading: CircleAvatar(
+                              backgroundImage: AssetImage(product.pathIcon!)),
+                          title: Text("${product.name}"),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              productState.changeStateBasket(inIndex);
+                            },
+                          ),
+                        )
+                      : const SizedBox(),
+                  (product.basket == "false")
+                      ? const SizedBox()
+                      : const Divider()
+                ],
+              ),
+            );
+          }),
     );
-            }
+  }
 }

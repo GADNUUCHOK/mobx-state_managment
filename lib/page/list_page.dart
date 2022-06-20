@@ -9,31 +9,32 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductState productState = ProductState();
-            return Observer(
-              builder: (_) => ListView.builder(
-                  itemCount: productState.listProductState.length,
-                  itemBuilder: (BuildContext inBuildContext, int inIndex) {
-                    Product product = productState.listProductState[inIndex];
-                    return Column(
-                      children: [
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: AssetImage(product.pathIcon!)),
-                          title: Text("${product.name}"),
-                          trailing: product.basket == "false" ?
-                          (IconButton(
+    return Observer(
+      builder: (_) => ListView.builder(
+          itemCount: productState.listProductState.length,
+          itemBuilder: (BuildContext inBuildContext, int inIndex) {
+            Product product = productState.listProductState[inIndex];
+            return Column(
+              children: [
+                Observer(
+                  builder: (_) => ListTile(
+                    leading: CircleAvatar(
+                        backgroundImage: AssetImage(product.pathIcon!)),
+                    title: Text("${product.name}"),
+                    trailing: product.basket == "false"
+                        ? (IconButton(
                             icon: const Icon(Icons.add),
                             onPressed: () {
-                              productState.changeState(inIndex);
+                              productState.changeStateBasket(inIndex);
                             },
                           ))
-                              : const Icon(Icons.done),
-                        ),
-                        const Divider()
-                      ],
-                    );
-                  }
+                        : const Icon(Icons.done),
                   ),
+                ),
+                const Divider()
+              ],
             );
+          }),
+    );
   }
 }

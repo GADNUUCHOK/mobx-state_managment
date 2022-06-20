@@ -6,14 +6,13 @@ import 'package:shop_mobx/utils.dart';
 
 import 'page/app_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  startSettings();
+  await startSettings();
+  runApp(const AppPage());
 }
 
 startSettings() async {
-  // productModel.loadProducts(ListProduct().listProduct);
   Directory docsDir = await getApplicationDocumentsDirectory();
   Utils.docsDir = docsDir;
-  runApp(const AppPage());
 }

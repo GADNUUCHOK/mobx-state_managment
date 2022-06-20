@@ -13,13 +13,13 @@ mixin _$ProductState on _ProductState, Store {
       Atom(name: '_ProductState.listProductState', context: context);
 
   @override
-  List<Product> get listProductState {
+  ObservableList<Product> get listProductState {
     _$listProductStateAtom.reportRead();
     return super.listProductState;
   }
 
   @override
-  set listProductState(List<Product> value) {
+  set listProductState(ObservableList<Product> value) {
     _$listProductStateAtom.reportWrite(value, super.listProductState, () {
       super.listProductState = value;
     });
@@ -29,11 +29,33 @@ mixin _$ProductState on _ProductState, Store {
       ActionController(name: '_ProductState', context: context);
 
   @override
-  void changeState(int inPosition) {
+  void changeStateBasket(int inPosition) {
     final _$actionInfo = _$_ProductStateActionController.startAction(
-        name: '_ProductState.changeState');
+        name: '_ProductState.changeStateBasket');
     try {
-      return super.changeState(inPosition);
+      return super.changeStateBasket(inPosition);
+    } finally {
+      _$_ProductStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addToBasket(Product product) {
+    final _$actionInfo = _$_ProductStateActionController.startAction(
+        name: '_ProductState.addToBasket');
+    try {
+      return super.addToBasket(product);
+    } finally {
+      _$_ProductStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeIntoBasket(Product product) {
+    final _$actionInfo = _$_ProductStateActionController.startAction(
+        name: '_ProductState.removeIntoBasket');
+    try {
+      return super.removeIntoBasket(product);
     } finally {
       _$_ProductStateActionController.endAction(_$actionInfo);
     }

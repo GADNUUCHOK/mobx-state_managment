@@ -1,8 +1,9 @@
+import 'package:mobx/mobx.dart';
 import 'package:shop_mobx/model/product.dart';
 
 class ListProduct {
 
-  List<Product> listProduct = <Product>[];
+  ObservableList<Product> listProduct = ObservableList<Product>();
 
   ListProduct() {
     Product product1 = Product();
